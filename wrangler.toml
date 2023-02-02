@@ -1,0 +1,6 @@
+name = "chatweb3worker"
+
+account_id = "ad48bbd9b182ed2ef96bc9c0fb5ef487"
+workers_dev = true
+main = 'index.js'
+compatibility_date = "2023-02-02"

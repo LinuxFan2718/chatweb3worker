@@ -25,7 +25,8 @@ async function handleRequest(request) {
     console.error(e);
   }
   const url = 'https://api.openai.com/v1/completions';
-  const model = 'text-davinci-003';
+  //const model = 'text-davinci-003';
+  const model = 'davinci:ft-personal-2023-02-02-03-15-59';
   const authorizationHeader = `Bearer ${OPENAI_API_KEY}`
   const headers = {
     'Content-Type': 'application/json',

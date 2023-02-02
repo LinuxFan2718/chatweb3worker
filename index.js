@@ -5,7 +5,18 @@ addEventListener('fetch', event => {
  * @param {Request} request
  */
 async function handleRequest(request) {
-  const allow_origin = '*';
+  const allowedOrigins = [
+    "https://chatweb3.cahillanelabs.com",
+    "https://chatweb3worker.dennislibre.workers.dev",
+    "https://chatweb3.pages.dev/",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000"
+  ];
+  const requestUrl = request.headers.get('origin');
+  let allow_origin = "https://chatweb3.cahillanelabs.com";
+  if (allowedOrigins.includes(requestUrl)) {
+    allow_origin = requestUrl;
+  }
   if (request.method === 'OPTIONS') {
     return new Response(null, {
       status: 204,
@@ -38,11 +49,17 @@ async function handleRequest(request) {
     max_tokens: 40,
     temperature: 0
   }
-  const response = await fetch(url, {
-    method: 'post',
-    headers: headers,
-    body: JSON.stringify(data)
-  })
+  let response;
+  try {
+    response = await fetch(url, {
+      method: 'post',
+      headers: headers,
+      body: JSON.stringify(data)
+    });
+  } catch (e) {
+    console.error(e);
+    throw new Error(e);
+  }
 
   const results = JSON.stringify(await response.json());
 

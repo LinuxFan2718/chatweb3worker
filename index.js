@@ -46,7 +46,7 @@ async function handleRequest(request) {
   const data = {
     model: model,
     prompt: prompt,
-    max_tokens: 40,
+    max_tokens: 100,
     temperature: 0
   }
   let response;
